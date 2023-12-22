@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 //import images
 import WomanImg from "../img/contact/woman.png";
@@ -8,8 +8,10 @@ import { motion } from "framer-motion";
 
 //import transition
 import { transition1 } from "../transitions";
+import { CursorContext } from "../context/CursorContext";
 
 const Contact = () => {
+  const { mouseEnterHandler, mouseLeaveHandler } = useContext(CursorContext);
   return (
     <motion.section
       initial={{ opacity: 0, y: "100%" }}
@@ -33,7 +35,11 @@ const Contact = () => {
             transition={transition1}
           ></motion.div>
           {/* text & form */}
-          <div className="lg:flex-1 lg:pt-32 px-4">
+          <div
+            onMouseEnter={mouseEnterHandler}
+            onMouseLeave={mouseLeaveHandler}
+            className="lg:flex-1 lg:pt-32 px-4"
+          >
             <h1 className="h1">Contact me</h1>
             <p className="mb-12">I would love to get suggestions from you.</p>
             <form className="flex flex-col gap-y-4">
@@ -68,6 +74,8 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "100%" }}
             transition={{ transition: transition1, duration: 1.5 }}
+            onMouseEnter={mouseEnterHandler}
+            onMouseLeave={mouseLeaveHandler}
             className="lg:flex-1"
           >
             <img src={WomanImg} alt="" />
